@@ -4,9 +4,9 @@ var lastpositionX;
 var lastpositionY;
 var color="blue";
 var width="10";
-canvas -
-document.getElementById("myCanvas");
-ctx= canvas.getContext("2d");
+var touchEvent=[];
+canvas = document.getElementById("myCanvas");
+ctx = canvas.getContext("2d");
 
 
 
@@ -47,6 +47,25 @@ if(mouseEvent=="mouseDown"){
 lastpositionX=currentpositionofX;
  lastpositionY=currentpositionofY;
 
+}
+function touch_move(){
+    currentpositionofX=e.clientX - canvas.offsetLeft;
+    currentpositionofY=e.clientY - canvas.offsetTop;
+   if(touchEvent=="touch_move"){
+    ctx.beginPath();
+    ctx.strokeStyle=color;
+    ctx.lineWidth=width;
+    ctx.moveTo(lastpositionX,lastpositionY);
+   
+    console.log("last position of X and Y cooradnites")
+    console.log("X="+lastpositionX+"Y"+lastpositionY);
+    ctx.lineTo(currentpositionofX,currentpositionofY);
+    ctx.stroke();
+    console.log("Current position of X and Y cooradnites")
+    console.log("X="+currentpositionX+"Y"+currentpositionY);
+   }
+   lastpositionX=currentpositionofX;
+    lastpositionY=currentpositionofY;    
 }
 function clear_area(){
     ctx.clearRect(0,0, ctx.canvas.width,ctx.canvas.height);
